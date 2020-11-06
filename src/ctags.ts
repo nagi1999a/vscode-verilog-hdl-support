@@ -243,9 +243,10 @@ export class CtagsManager {
     }
 
     onDidChangeActiveTextEditor(editor: TextEditor) {
-        if (!this.isOutputPanel(editor.document.uri)) {
+        if (editor !== undefined && !this.isOutputPanel(editor.document.uri)) {
             console.log("on open");
             CtagsManager.ctags.setDocument(editor.document);
+            CtagsManager.ctags.index();
         }
     }
 
